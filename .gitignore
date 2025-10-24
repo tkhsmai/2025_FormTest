@@ -23,6 +23,8 @@ mono_crash.*
 [Rr]elease/
 [Rr]eleases/
 
+.vs/
+
 [Dd]ebug/x64/
 [Dd]ebugPublic/x64/
 [Rr]elease/x64/
@@ -46,6 +48,7 @@ bld/
 [Oo]ut/
 [Ll]og/
 [Ll]ogs/
+
 
 # Build results on 'Bin' directories
 **/[Bb]in/*
