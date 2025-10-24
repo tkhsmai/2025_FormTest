@@ -32,12 +32,20 @@ namespace Form_Test
                     //ボタンの名前設定
                     testButton.Text = "TestButton";
 
+                    //ボタンをクリックしたときに何を出力するか
+                    //ここでは下の処理の"Form始動！"という言葉が出力される
+                    testButton.MouseHover += hogehogeClick;
+
                     //コントロールにボタンを追加
                     Controls.Add(testButton);
                 }
             }
         }
-           
+
+        private void hogehogeClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("クリックされてしまいました");
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Form始動！");
