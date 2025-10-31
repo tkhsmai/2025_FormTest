@@ -32,45 +32,50 @@ namespace Form_Test
         /// </summary>
         const int BOARD_SIZE_Y = 3;
 
+        private TestButton[,] _buttonArry;
+
         public Form1()
         {
             InitializeComponent();
+            _buttonArry = new TestButton[BOARD_SIZE_Y, BOARD_SIZE_X];
             for (int i = 0; i < BOARD_SIZE_X; i++)
             {
                 for (int j = 0; j < BOARD_SIZE_Y; j++)
                 {
-                    //インスタンスの作成
+                    // インスタンスの作成
                     TestButton testButton = new TestButton(new Point(i * BUTTON_SIZE_X, j * BUTTON_SIZE_Y), 
                                             new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "");
 
-                    //ボタンの位置を設定
-                    //testButton.Location = new Point(i * 90, j * 50);
-
-                    //ボタンの大きさ設定
-                    //testButton.Size = new Size(80, 40);
-
-                    //ボタンの名前設定
-                    //testButton.Text = "TestButton";
-
-                    //ボタンをクリックしたときに何を出力するか
-                    //ここでは下の処理の"クリックされてしまいました"という言葉が出力される
-                    //testButton.MouseHover += hogehogeClick;
-
-                    //コントロールにボタンを追加
+                    // 配列にボタンの参照を追加
+                    _buttonArry[j, i] = testButton;
+                    
+                    // コントロールにボタンを追加
                     Controls.Add(testButton);
                 }
-            }   
+            }
+            _buttonArry[1, 0].SetEnable(true);
+
         }
 
-        //private void hogehogeClick(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show("クリックされてしまいました");
-        //}
-
+        // 自動生成
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Form始動！");
         }
     }
 }
+
+
+         //ボタンの位置を設定
+         //testButton.Location = new Point(i * 90, j * 50);
+         
+         //ボタンの大きさ設定
+         //testButton.Size = new Size(80, 40);
+         
+         //ボタンの名前設定
+         //testButton.Text = "TestButton";
+         
+         //ボタンをクリックしたときに何を出力するか
+         //ここでは下の処理の"クリックされてしまいました"という言葉が出力される
+         //testButton.MouseHover += hogehogeClick;
 
