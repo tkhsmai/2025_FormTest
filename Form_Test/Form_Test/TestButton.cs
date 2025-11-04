@@ -75,11 +75,23 @@ namespace Form_Test
                 BackColor = _offColor;
             }
         }
+        
 
+        public void Toggle()
+        {
+            SetEnable(!_enable);
+        }
+
+        /// <summary>
+        /// 各ボタンがクリックされたときに呼び出される関数
+        /// クリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         // クリックしたときの出力内容を自分で設定
         private void ClickEvent(object sender, EventArgs e)
         {
-            _form1.GetTestButton(_x, _y).SetEnable(true);
+            _form1.GetTestButton(_x, _y).Toggle();
             // ctrl+r+rすると他のクラスに書いた変数も変えられる
         }
     }

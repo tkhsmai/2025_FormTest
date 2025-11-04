@@ -39,7 +39,6 @@ namespace Form_Test
                 {
                     // インスタンスの作成
                     TestButton testButton = new TestButton(this, i, j,
-                                            new Point(i * BUTTON_SIZE_X, j * BUTTON_SIZE_Y), 
                                             new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "");
 
                     // 配列にボタンの参照を追加
@@ -54,6 +53,10 @@ namespace Form_Test
 
         public TestButton GetTestButton(int x, int y)
         {
+            //配列外参照対策
+            if (x < 0 || x >= BOARD_SIZE_X) return null;
+            if (y < 0 || y >= BOARD_SIZE_Y) return null;
+
             return _buttonArray[y, x];
         }
 
