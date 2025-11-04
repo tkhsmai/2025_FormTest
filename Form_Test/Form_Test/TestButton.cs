@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Form_Test
 {
-    internal class TestButton : Button
+    public class TestButton : Button
     {
         /// <summary>onの時の色</summary>
         private Color _onColor = Color.HotPink;
@@ -21,26 +21,14 @@ namespace Form_Test
         /// <summary>現在onかoffか</summary>
         private bool _enable;
 
+        /// <summary>Form1の参照</summary>
+        private Form1 _form1;
 
-        /// <summary>onとoffの設定</summary>
-        /// <param name="on"></param>
-        public void SetEnable(bool on)
+        public TestButton(Form1 form1, Point position, Size size, string text)
         {
-            _enable = on;
-            if (on)
-            {
-                BackColor = _onColor;
-            }
-            else
-            {
-                BackColor = _offColor;
-            }
-        }
-        
+            // Form1の参照を保管
+            _form1 = form1;
 
-
-        public TestButton(Point position, Size size, string text)
-        {
             //ボタンの位置を設定
             Location = position;
 
@@ -58,11 +46,26 @@ namespace Form_Test
 
         }
 
-    // クリックしたときの出力内容を自分で設定
-    private void ClickEvent(object sender, EventArgs e)
+        /// <summary>onとoffの設定</summary>
+        /// <param name="on"></param>
+        public void SetEnable(bool on)
         {
-            //クリックしたら色変わる(!は否定だからtrue⇔falseになる)
-            SetEnable(!_enable);
+            _enable = on;
+            if (on)
+            {
+                BackColor = _onColor;
+            }
+            else
+            {
+                BackColor = _offColor;
+            }
+        }
+
+        // クリックしたときの出力内容を自分で設定
+        private void ClickEvent(object sender, EventArgs e)
+        {
+            _form1.GetTestButton(1, 2).SetEnable(true);
+            // ctrl+r+r
         }
     }
 }
