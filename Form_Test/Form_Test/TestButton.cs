@@ -32,7 +32,7 @@ namespace Form_Test
 
 
         // コンストラクタ
-        public TestButton(Form1 form1, int x,int y, Size size, string text)
+        public TestButton(Form1 form1, int x, int y, Size size, string text)
         {
             // Form1の参照を保管
             _form1 = form1;
@@ -75,7 +75,7 @@ namespace Form_Test
                 BackColor = _offColor;
             }
         }
-        
+
 
         public void Toggle()
         {
@@ -91,8 +91,36 @@ namespace Form_Test
         // クリックしたときの出力内容を自分で設定
         private void ClickEvent(object sender, EventArgs e)
         {
-            _form1.GetTestButton(_x, _y).Toggle();
-            // ctrl+r+rすると他のクラスに書いた変数も変えられる
+            //楽な書き方
+            //_form1.GetTestButton(_x, _y)?.Toggle();
+            //_form1.GetTestButton(_x + 1, _y)?.Toggle();
+            //_form1.GetTestButton(_x - 1, _y)?.Toggle();
+            //_form1.GetTestButton(_x, _y + 1)?.Toggle();
+            //_form1.GetTestButton(_x, _y - 1)?.Toggle();
+            
+            // かっこいい書き方
+            for (int i = 0; i < _toggleData.Length; i++)
+            {
+                var data = _toggleData[i];
+                var button = _form1.GetTestButton(_x + data[0], _y + data[1]);
+
+                if (button != null)
+                {
+                    button.Toggle();
+                }
+            }
         }
+
+
+        private int[][] _toggleData =
+        {
+            new int []{0,0},
+            new int []{1,0},
+            new int []{-1,0},
+            new int []{0,1},
+            new int []{0,-1},
+        };
+        
     }
 }
+           // ctrl+r+rすると他のクラスに書いた変数も変えられる    
