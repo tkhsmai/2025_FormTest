@@ -49,11 +49,11 @@ namespace Form_Test
 
             //ボタンの大きさ設定
             Size = size;
-
+            
             //ボタンの名前設定
             Text = text;
-
-            SetEnable(false);
+ 
+            SetEnable(true);
 
             //ボタンをクリックしたときに何を出力するか
             Click += ClickEvent;
@@ -89,6 +89,7 @@ namespace Form_Test
         /// <param name="sender"></param>
         /// <param name="e"></param>
         // クリックしたときの出力内容を自分で設定
+        // 押したボタンの上下左右の色が変わる処理
         private void ClickEvent(object sender, EventArgs e)
         {
             //楽な書き方
@@ -110,8 +111,6 @@ namespace Form_Test
                 }
             }
         }
-
-
         private int[][] _toggleData =
         {
             new int []{0,0},
