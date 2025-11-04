@@ -38,7 +38,8 @@ namespace Form_Test
                 for (int j = 0; j < BOARD_SIZE_Y; j++)
                 {
                     // インスタンスの作成
-                    TestButton testButton = new TestButton(this,new Point(i * BUTTON_SIZE_X, j * BUTTON_SIZE_Y), 
+                    TestButton testButton = new TestButton(this, i, j,
+                                            new Point(i * BUTTON_SIZE_X, j * BUTTON_SIZE_Y), 
                                             new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "");
 
                     // 配列にボタンの参照を追加

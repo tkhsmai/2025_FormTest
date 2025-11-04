@@ -24,13 +24,28 @@ namespace Form_Test
         /// <summary>Form1の参照</summary>
         private Form1 _form1;
 
-        public TestButton(Form1 form1, Point position, Size size, string text)
+        /// <summary>横位置</summary>
+        private int _x;
+
+        /// <summary>縦位置</summary>
+        private int _y;
+
+
+        // コンストラクタ
+        public TestButton(Form1 form1, int x,int y, Size size, string text)
         {
             // Form1の参照を保管
             _form1 = form1;
 
+            // 横位置を保管
+            _x = x;
+
+            // 縦位置を保管
+            _y = y;
+
+
             //ボタンの位置を設定
-            Location = position;
+            Location = new Point(x * size.Width, y * size.Height);
 
             //ボタンの大きさ設定
             Size = size;
@@ -64,8 +79,8 @@ namespace Form_Test
         // クリックしたときの出力内容を自分で設定
         private void ClickEvent(object sender, EventArgs e)
         {
-            _form1.GetTestButton(1, 2).SetEnable(true);
-            // ctrl+r+r
+            _form1.GetTestButton(_x, _y).SetEnable(true);
+            // ctrl+r+rすると他のクラスに書いた変数も変えられる
         }
     }
 }
