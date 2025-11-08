@@ -61,6 +61,8 @@ namespace Form_Test
 
         }
 
+        public bool IsEnabled => _enable;
+
         /// <summary>onとoffの設定</summary>
         /// <param name="on"></param>
         public void SetEnable(bool on)
@@ -82,24 +84,23 @@ namespace Form_Test
             SetEnable(!_enable);
         }
 
+
+        //楽な書き方
+        //_form1.GetTestButton(_x, _y)?.Toggle();
+        //_form1.GetTestButton(_x + 1, _y)?.Toggle();
+        //_form1.GetTestButton(_x - 1, _y)?.Toggle();
+        //_form1.GetTestButton(_x, _y + 1)?.Toggle();
+        //_form1.GetTestButton(_x, _y - 1)?.Toggle();
+
         /// <summary>
         /// 各ボタンがクリックされたときに呼び出される関数
         /// クリックイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        // クリックしたときの出力内容を自分で設定
         // 押したボタンの上下左右の色が変わる処理
         private void ClickEvent(object sender, EventArgs e)
         {
-            //楽な書き方
-            //_form1.GetTestButton(_x, _y)?.Toggle();
-            //_form1.GetTestButton(_x + 1, _y)?.Toggle();
-            //_form1.GetTestButton(_x - 1, _y)?.Toggle();
-            //_form1.GetTestButton(_x, _y + 1)?.Toggle();
-            //_form1.GetTestButton(_x, _y - 1)?.Toggle();
-            
-            // かっこいい書き方
             for (int i = 0; i < _toggleData.Length; i++)
             {
                 var data = _toggleData[i];
@@ -107,9 +108,33 @@ namespace Form_Test
 
                 if (button != null)
                 {
-                    button.Toggle();
+                    button.Toggle();     // 色反転
                 }
             }
+
+            // ゲームクリア表示処理
+
+
+            bool first = _form1.GetTestButton(0, 0).IsEnabled;
+
+            // すべてのボタンが同じ状態かチェック
+            for(int y = 0; y <3; y++)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    var btn = _form1.GetTestButton(x, y);
+                    if (btn == null) continue;
+                    
+                    if (btn.IsEnabled != first)
+                    {
+                        return;     // 1つでも違えばクリアじゃない
+                    }
+                }
+            }
+            // 全部同じならクリア
+            MessageBox.Show("ゲームクリア！");
+           
+
         }
         private int[][] _toggleData =
         {
@@ -119,7 +144,7 @@ namespace Form_Test
             new int []{0,1},
             new int []{0,-1},
         };
-        
+
     }
 }
-           // ctrl+r+rすると他のクラスに書いた変数も変えられる    
+// ctrl+r+rすると他のクラスに書いた変数も変えられる    

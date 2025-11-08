@@ -29,6 +29,9 @@ namespace Form_Test
         /// <summary>TestButtonの二次元配列</summary>
         private TestButton[,] _buttonArray;
 
+        /// <summary>乱数生成</summary>
+        private Random rand = new Random();
+
         public Form1()
         {
             InitializeComponent();
@@ -46,24 +49,24 @@ namespace Form_Test
                     
                     // コントロールにボタンを追加
                     Controls.Add(testButton);
+
+                    // ランダムに true または false を作る
+                    bool r = rand.Next(2) == 0;
+
+                    // rがtrueならピンク、falseならグレー
+                    testButton.BackColor = r ? Color.HotPink : Color.Gray;
                 }
             }
-
+            
         }
 
         public TestButton GetTestButton(int x, int y)
         {
-            //配列外参照対策
+            //配列外参照対策(x、yが0より小さいまたは指定値以上の場合null)
             if (x < 0 || x >= BOARD_SIZE_X) return null;
             if (y < 0 || y >= BOARD_SIZE_Y) return null;
 
             return _buttonArray[y, x];
-        }
-
-        // 自動生成
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("クリック");
         }
     }
 }
