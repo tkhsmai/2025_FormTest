@@ -118,7 +118,7 @@ namespace Form_Test
             bool first = _form1.GetTestButton(0, 0).IsEnabled;
 
             // すべてのボタンが同じ状態かチェック
-            for(int y = 0; y <3; y++)
+            for(int y = 0; y < 3; y++)
             {
                 for (int x = 0; x < 3; x++)
                 {
@@ -127,10 +127,11 @@ namespace Form_Test
                     
                     if (btn.IsEnabled != first)
                     {
-                        return;     // 1つでも違えばクリアじゃない
+                        return;    // 1つでも違えばクリアじゃない
                     }
                 }
             }
+            
             // 全部同じならクリア
             MessageBox.Show("ゲームクリア！");
            
